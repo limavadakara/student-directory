@@ -16,9 +16,9 @@ def print_header
   puts "The students of Villains Academy"
   puts  "-------------"
 end
-def print(students)
-  students.each do |student|
-    puts student
+def print(names)
+  names.each do |name|
+    puts name
   end
 end
 def print_footer(students) 
