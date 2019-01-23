@@ -33,22 +33,22 @@ def input_students
       break
     end  
     puts "Enter student cohort"
-    cohort = gets.chomp
+    cohort = gets.gsub(/\n/, "")
     if cohort.empty?
       cohort = "not known cohort"
     end
     puts "Enter student hobbies"
-    hobbies = gets.chomp
+    hobbies = gets.gsub("\n", "")
     if hobbies.empty?
       hobbies = "not known hobbies"
     end
     puts "Enter student country of birth"
-    country = gets.chomp
+    country = gets.delete("\n")
     if country.empty?
       country = "not known country"
     end
     puts "Enter student height"
-    height = gets.chomp
+    height = gets.tr("\n", "")
     if height.empty?
       height = "not known height"
     end
