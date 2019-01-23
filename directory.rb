@@ -8,7 +8,7 @@ def print(students, name_starts_with)
 #  while i < students.length do
   until i == students.length do
     if (students[i][:name].capitalize.start_with? name_starts_with) || (students[i][:name].length < 12)
-      puts "#{i + 1} #{students[i][:name]} (#{students[i][:cohort]}) cohort with #{students[i][:hobbies]} hobbies from #{students[i][:country]} and with height of #{students[i][:height]}"
+      puts "#{i + 1} #{students[i][:name]} (#{students[i][:cohort]}) cohort with #{students[i][:hobbies]} hobbies from #{students[i][:country]} and with height of #{students[i][:height]}".center(100 ,"-")
     end
     i += 1
   end 
