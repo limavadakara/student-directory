@@ -4,10 +4,17 @@ def print_header
 end
 
 def print(students, name_starts_with)
-  students.each_with_index do |student, idx|
-     puts "#{idx+1} #{student[:name]} (#{student[:cohort]}) cohort" if student[:name].capitalize.start_with? name_starts_with 
-     puts "#{idx+1} #{student[:name]} (#{student[:cohort]}) cohort" if student[:name].length < 12 
-  end
+  i = 0
+  while i < students.length do
+    if (students[i][:name].capitalize.start_with? name_starts_with) || (students[i][:name].length < 12)
+      puts "#{i + 1} #{students[i][:name]} (#{students[i][:cohort]}) cohort"
+    end
+    i += 1
+  end 
+#  students.each_with_index do |student, idx|
+#     puts "#{idx+1} #{student[:name]} (#{student[:cohort]}) cohort" if student[:name].capitalize.start_with? name_starts_with 
+#     puts "#{idx+1} #{student[:name]} (#{student[:cohort]}) cohort" if student[:name].length < 12 
+#  end
 end
 
 def print_footer(students) 
