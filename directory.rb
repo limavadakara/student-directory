@@ -18,8 +18,8 @@ def print(students, name_starts_with)
 #  end
 end
 
-def print_footer(students) 
-  puts "Overall, we have #{students.count()} great students"
+def print_footer(students)
+  puts students.count == 1 ? "Overall, we have #{students.count()} great student" : "Overall, we have #{students.count()} great students"
 end
 
 def input_students
@@ -53,7 +53,8 @@ def input_students
       height = "not known height"
     end
     students.push({name: name, cohort: cohort, hobbies: hobbies, country: country, height: height})
-    puts "Now we have #{students.count} students"
+
+    puts students.count == 1? "Now we have #{students.count} student" : "Now we have #{students.count} students"
   end
   return students
 end
