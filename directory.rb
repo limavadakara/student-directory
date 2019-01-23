@@ -66,7 +66,7 @@ end
 
 def print_students_grouped_by_cohort(students)
   cohorts_grouping = Hash.new
-  students.each do |student|
+  students.map { |student|
     cohort = student[:cohort]
     name = student[:name]
     if cohorts_grouping[cohort.to_sym] == nil
@@ -74,7 +74,7 @@ def print_students_grouped_by_cohort(students)
     else
       cohorts_grouping[cohort.to_sym].push(name)
     end
-  end
+  }
   cohorts_grouping.each do |key, value|
         puts "Cohort #{key} has #{value.join(", ")}"
   end
