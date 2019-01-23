@@ -35,22 +35,22 @@ def input_students
     puts "Enter student cohort"
     cohort = gets.chomp
     if cohort.empty?
-      cohort = "not known"
+      cohort = "not known cohort"
     end
     puts "Enter student hobbies"
     hobbies = gets.chomp
     if hobbies.empty?
-      hobbies = "not known"
+      hobbies = "not known hobbies"
     end
     puts "Enter student country of birth"
     country = gets.chomp
     if country.empty?
-      country = "not known"
+      country = "not known country"
     end
     puts "Enter student height"
     height = gets.chomp
     if height.empty?
-      height = "not known"
+      height = "not known height"
     end
     students.push({name: name, cohort: cohort, hobbies: hobbies, country: country, height: height})
     puts "Now we have #{students.count} students"
