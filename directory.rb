@@ -64,8 +64,25 @@ def obtain_name_start
     return first_alpha
 end
 
+def print_students_grouped_by_cohort(students)
+  cohorts_grouping = Hash.new
+  students.each do |student|
+    cohort = student[:cohort]
+    name = student[:name]
+    if cohorts_grouping[cohort.to_sym] == nil
+      cohorts_grouping[cohort.to_sym] = [name]
+    else
+      cohorts_grouping[cohort.to_sym].push(name)
+    end
+  end
+  cohorts_grouping.each do |key, value|
+        puts "Cohort #{key} has #{value.join(", ")}"
+  end
+end
+
 students = input_students  
 start_alphabet = obtain_name_start
 print_header
 print(students, start_alphabet)
+print_students_grouped_by_cohort(students)
 print_footer(students)
