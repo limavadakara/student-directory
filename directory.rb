@@ -5,7 +5,8 @@ end
 
 def print(students, name_starts_with)
   i = 0
-  while i < students.length do
+#  while i < students.length do
+  until i == students.length do
     if (students[i][:name].capitalize.start_with? name_starts_with) || (students[i][:name].length < 12)
       puts "#{i + 1} #{students[i][:name]} (#{students[i][:cohort]}) cohort"
     end
