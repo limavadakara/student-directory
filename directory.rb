@@ -8,7 +8,7 @@ def print(students, name_starts_with)
 #  while i < students.length do
   until i == students.length do
     if (students[i][:name].capitalize.start_with? name_starts_with) || (students[i][:name].length < 12)
-      puts "#{i + 1} #{students[i][:name]} (#{students[i][:cohort]}) cohort"
+      puts "#{i + 1} #{students[i][:name]} (#{students[i][:cohort]}) cohort with #{students[i][:hobbies]} hobbies from #{students[i][:country]} and with height of #{students[i][:height]}"
     end
     i += 1
   end 
@@ -24,14 +24,35 @@ end
 
 def input_students
   students = []
-  puts "Enter names of students"
+  puts "Enter student details"
   puts "Press enter twice to finish"
   while true do
+    puts "Enter student name"
     name = gets.chomp
     if name.empty?
       break
     end  
-    students.push({name: name, cohort: :november})
+    puts "Enter student cohort"
+    cohort = gets.chomp
+    if cohort.empty?
+      cohort = "not known"
+    end
+    puts "Enter student hobbies"
+    hobbies = gets.chomp
+    if hobbies.empty?
+      hobbies = "not known"
+    end
+    puts "Enter student country of birth"
+    country = gets.chomp
+    if country.empty?
+      country = "not known"
+    end
+    puts "Enter student height"
+    height = gets.chomp
+    if height.empty?
+      height = "not known"
+    end
+    students.push({name: name, cohort: cohort, hobbies: hobbies, country: country, height: height})
     puts "Now we have #{students.count} students"
   end
   return students
