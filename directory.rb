@@ -88,7 +88,7 @@ def input_students()
     if height.empty?
       height = "unknown"
     end
-    @students.push({name: name, cohort: cohort, hobbies: hobbies, country: country, height: height})
+    @students.push({name: name, cohort: cohort.to_sym, hobbies: hobbies, country: country, height: height})
 
     puts @students.count == 1? "Now we have #{@students.count} student" : "Now we have #{@students.count} students"
   end
