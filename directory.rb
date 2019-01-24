@@ -1,3 +1,26 @@
+def interactive_menu
+  students = []
+  loop do
+    puts "What would you like to do?"
+    puts "1. Input students"
+    puts "2. Print students"
+    puts "9. Exit"
+    choice = gets.chomp
+    case choice
+      when "1" 
+        input_students(students)
+      when "2"
+        print_header
+        print(students, obtain_name_start())
+        print_footer(students)
+      when "9"
+        exit
+      else
+        puts "Invalid selection, please try again"
+    end
+  end
+end
+
 def print_header
   puts "The students of Villains Academy"
   puts  "-------------"
@@ -22,8 +45,7 @@ def print_footer(students)
   puts students.count == 1 ? "Overall, we have #{students.count()} great student" : "Overall, we have #{students.count()} great students"
 end
 
-def input_students
-  students = []
+def input_students(students)
   puts "Enter student details"
   puts "Press enter twice to finish"
   while true do
@@ -56,7 +78,7 @@ def input_students
 
     puts students.count == 1? "Now we have #{students.count} student" : "Now we have #{students.count} students"
   end
-  return students
+#  return students
 end
 
 def obtain_name_start
@@ -81,9 +103,4 @@ def print_students_grouped_by_cohort(students)
   end
 end
 
-students = input_students  
-start_alphabet = obtain_name_start
-print_header
-print(students, start_alphabet)
-print_students_grouped_by_cohort(students)
-print_footer(students)
+interactive_menu
