@@ -18,9 +18,7 @@ def process_choice(choice)
     when "1"
       input_students()
     when "2"
-      print_header
-      print(obtain_name_start())
-      print_footer()
+      show_students()
     when "9"
       exit
     else
@@ -28,12 +26,18 @@ def process_choice(choice)
   end
 end
 
+def show_students
+  print_header
+  print_students_list(obtain_name_start())
+  print_footer()
+end
+
 def print_header
   puts "The students of Villains Academy"
   puts  "-------------"
 end
 
-def print(name_starts_with)
+def print_students_list(name_starts_with)
   i = 0
 #  while i < @students.length do
   until i == @students.length do
