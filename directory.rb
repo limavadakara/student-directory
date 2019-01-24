@@ -122,6 +122,7 @@ def save_students
     student_info = [student[:name], student[:cohort],student[:hobbies], student[:country], student[:height]]
     file.puts student_info.join(",")
   end
+  file.close()
 end
 
 interactive_menu
