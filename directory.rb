@@ -10,6 +10,7 @@ def print_menu
   puts "What would you like to do?"
   puts "1. Input students"
   puts "2. Print students"
+  puts "3. Save students"
   puts "9. Exit"
 end 
 
@@ -19,6 +20,8 @@ def process_choice(choice)
       input_students()
     when "2"
       show_students()
+    when "3"
+      save_students()
     when "9"
       exit
     else
@@ -111,6 +114,13 @@ def print_students_grouped_by_cohort()
   }
   cohorts_grouping.each do |key, value|
         puts "Cohort #{key} has #{value.join(", ")}"
+  end
+end
+def save_students
+  file = File.open("students.csv", "w")
+  @students.each do |student|
+    student_info = [student[:name], student[:cohort],student[:hobbies], student[:country], student[:height]]
+    file.puts student_info.join(",")
   end
 end
 
