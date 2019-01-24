@@ -2,7 +2,7 @@
 def interactive_menu
   loop do
     print_menu
-    process_choice(gets.chomp)
+    process_choice(STDIN.gets.chomp)
   end
 end
 
@@ -67,27 +67,27 @@ def input_students()
   puts "Press enter twice to finish"
   while true do
     puts "Enter student name"
-    name = gets.chomp
+    name = STDIN.gets.chomp
     if name.empty?
       break
     end  
     puts "Enter student cohort"
-    cohort = gets.gsub(/\n/, "")
+    cohort = STDIN.gets.gsub(/\n/, "")
     if cohort.empty?
       cohort = "unknown"
     end
     puts "Enter student hobbies"
-    hobbies = gets.gsub("\n", "")
+    hobbies = STDIN.gets.gsub("\n", "")
     if hobbies.empty?
       hobbies = "unknown"
     end
     puts "Enter student country of birth"
-    country = gets.delete("\n")
+    country = STDIN.gets.delete("\n")
     if country.empty?
       country = "unknown"
     end
     puts "Enter student height"
-    height = gets.tr("\n", "")
+    height = STDIN.gets.tr("\n", "")
     if height.empty?
       height = "unknown"
     end
@@ -100,7 +100,7 @@ end
 
 def obtain_name_start
     puts "Enter the starting letter of the names you want to print"
-    first_alpha = gets.chomp.slice(0,1).upcase
+    first_alpha = STDIN.gets.chomp.slice(0,1).upcase
     return first_alpha
 end
 
@@ -127,8 +127,8 @@ def save_students
   end
   file.close()
 end
-def load_students
-  file = File.open("students.csv", "r")
+def load_students(filename = "students.csv")
+  file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort, hobbies, country, height = line.chomp.split(",")
     @students << {name: name, cohort: cohort.to_sym, hobbies: hobbies, country: country, height: height}
@@ -136,4 +136,17 @@ def load_students
   file.close()  
 end
 
+def try_file_load
+  filename = ARGV.first
+  if filename.nil? 
+     return
+  end
+  if File.exist?(filename)
+    load_students(filename)
+    puts "#{@students.count} students loaded from file #{filename}"
+  else
+    puts "#{filename} does not exist so couldn't be loaded"
+  end
+end
+try_file_load
 interactive_menu
