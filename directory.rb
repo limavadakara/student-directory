@@ -68,22 +68,22 @@ def input_students()
     puts "Enter student cohort"
     cohort = gets.gsub(/\n/, "")
     if cohort.empty?
-      cohort = "not known cohort"
+      cohort = "unknown"
     end
     puts "Enter student hobbies"
     hobbies = gets.gsub("\n", "")
     if hobbies.empty?
-      hobbies = "not known hobbies"
+      hobbies = "unknown"
     end
     puts "Enter student country of birth"
     country = gets.delete("\n")
     if country.empty?
-      country = "not known country"
+      country = "unknown"
     end
     puts "Enter student height"
     height = gets.tr("\n", "")
     if height.empty?
-      height = "not known height"
+      height = "unknown"
     end
     @students.push({name: name, cohort: cohort, hobbies: hobbies, country: country, height: height})
 
