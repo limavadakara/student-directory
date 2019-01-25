@@ -175,7 +175,7 @@ end
 def try_file_load
   filename = ARGV.first
   if filename.nil? 
-     return
+     filename = DEFAULT_FILE
   end
   if File.exist?(filename)
     load_students(filename)
