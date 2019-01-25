@@ -159,23 +159,23 @@ def save_students
   puts "While file do you want to save the students to? "
   filename = STDIN.gets.chomp
   filename = DEFAULT_FILE if filename.empty?
-  file = File.open(filename, "w")
-  @students.each do |student|
-    student_info = [student[:name], student[:cohort],student[:hobbies], student[:country], student[:height]]
-    file.puts student_info.join(",")
+  File.open(filename, "w") do |file|
+    @students.each do |student|
+      student_info = [student[:name], student[:cohort],student[:hobbies], student[:country], student[:height]]
+      file.puts student_info.join(",")
+    end
   end
-  file.close()
   puts @students.count == 1? "#{@students.count} student saved to file #{filename}" : "#{@students.count} students saved to file #{filename}"
 end
 
 
 def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
-  file.readlines.each do |line|
-    name, cohort, hobbies, country, height = line.chomp.split(",")
-    add_student(name, cohort, hobbies, country, height)
+  File.open(filename, "r") do |file|
+    file.readlines.each do |line|
+      name, cohort, hobbies, country, height = line.chomp.split(",")
+      add_student(name, cohort, hobbies, country, height)
+    end
   end
-  file.close() 
   puts @students.count == 1? "#{@students.count} student loaded from file #{filename}" : "#{@students.count} students loaded from file #{filename}" 
 end
 
