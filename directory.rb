@@ -1,5 +1,9 @@
 @students = []
-
+DEFAULT_COHORT = :November
+DEFAULT_HOBBY = "UNKNOWN"
+DEFAULT_COUNTRY = "UK"
+DEFAULT_HEIGHT = "UNKNOWN"
+DEFAULT_FILE = "students.csv"
 
 def interactive_menu
   loop do
@@ -63,7 +67,9 @@ end
 def print_students_list()
   i = 0
   until i == @students.length do
-      puts "#{i + 1} #{@students[i][:name]} (#{@students[i][:cohort]}) cohort with #{@students[i][:hobbies]} hobbies from #{@students[i][:country]} and with height of #{@students[i][:height]}".center(100 ,"-")
+      puts "#{i + 1} #{@students[i][:name]} (#{@students[i][:cohort]}) cohort"\
+           " with #{@students[i][:hobbies]} hobbies from #{@students[i][:country]}"\
+           " and with height of #{@students[i][:height]}".center(100 ," ")
     i += 1
   end 
 end
@@ -78,7 +84,9 @@ def print_students_name_starting_with()
   count = 0  
   @students.each_with_index do |student, idx|
      if student[:name].capitalize.start_with? name_starts_with
-       puts "#{idx + 1} #{student[:name]} (#{student[:cohort]}) cohort with #{student[:hobbies]} hobbies from #{student[:country]} and with height of #{student[:height]}".center(100 ,"-")
+       puts "#{idx + 1} #{student[:name]} (#{student[:cohort]}) cohort"\
+            " with #{student[:hobbies]} hobby from #{student[:country]}"\
+            " and with height of #{student[:height]}".center(100 ," ")
        count += 1
      end
   end
@@ -103,22 +111,22 @@ def input_students()
     puts "Enter student cohort"
     cohort = STDIN.gets.gsub(/\n/, "")
     if cohort.empty?
-      cohort = "unknown"
+      cohort = DEFAULT_COHORT
     end
     puts "Enter student hobbies"
     hobbies = STDIN.gets.gsub("\n", "")
     if hobbies.empty?
-      hobbies = "unknown"
+      hobbies = DEFAULT_HOBBY
     end
     puts "Enter student country of birth"
     country = STDIN.gets.delete("\n")
     if country.empty?
-      country = "unknown"
+      country = DEFAULT_COUNTRY
     end
     puts "Enter student height"
     height = STDIN.gets.tr("\n", "")
     if height.empty?
-      height = "unknown"
+      height = DEFAULT_HEIGHT
     end
     @students.push({name: name, cohort: cohort.to_sym, hobbies: hobbies, country: country, height: height})
 
