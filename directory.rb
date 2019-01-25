@@ -32,7 +32,7 @@ def process_choice(choice)
     when "2"
       show_students()
     when "3"
-      save_students(DEFAULT_FILE)
+      save_students()
     when "4"
       load_students()
     when "5"
@@ -155,7 +155,8 @@ def print_students_grouped_by_cohort()
 end
 
 
-def save_students(filename)
+def save_students
+  filename = DEFAULT_FILE
   file = File.open(filename, "w")
   @students.each do |student|
     student_info = [student[:name], student[:cohort],student[:hobbies], student[:country], student[:height]]
