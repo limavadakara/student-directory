@@ -102,6 +102,7 @@ end
 def input_students()
   puts "Enter student details"
   puts "Press enter twice to finish"
+  no_of_students_input = 0
   while true do
     puts "Enter student name"
     name = STDIN.gets.chomp
@@ -120,7 +121,9 @@ def input_students()
     height = DEFAULT_HEIGHT if height.empty?
     add_student(name, cohort, hobbies, country, height)
     puts @students.count == 1? "Now we have #{@students.count} student" : "Now we have #{@students.count} students"
+    no_of_students_input += 1
   end
+  puts "Input #{no_of_students_input} students and overall we now have #{@students.count} students"
 end
 
 
@@ -153,12 +156,14 @@ end
 
 
 def save_students
-  file = File.open("students.csv", "w")
+  filename = DEFAULT_FILE
+  file = File.open(filename, "w")
   @students.each do |student|
     student_info = [student[:name], student[:cohort],student[:hobbies], student[:country], student[:height]]
     file.puts student_info.join(",")
   end
   file.close()
+  puts @students.count == 1? "#{@students.count} student saved to file #{filename}" : "#{@students.count} students saved to file #{filename}"
 end
 
 
@@ -168,7 +173,8 @@ def load_students(filename = "students.csv")
     name, cohort, hobbies, country, height = line.chomp.split(",")
     add_student(name, cohort, hobbies, country, height)
   end
-  file.close()  
+  file.close() 
+  puts @students.count == 1? "#{@students.count} student loaded from file #{filename}" : "#{@students.count} students loaded from file #{filename}" 
 end
 
 
@@ -179,7 +185,6 @@ def try_file_load
   end
   if File.exist?(filename)
     load_students(filename)
-    puts "#{@students.count} students loaded from file #{filename}"
   else
     puts "#{filename} does not exist so couldn't be loaded"
   end
