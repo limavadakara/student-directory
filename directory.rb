@@ -1,4 +1,7 @@
+require 'csv'
+
 @students = []
+
 DEFAULT_COHORT = :November
 DEFAULT_HOBBY = "UNKNOWN"
 DEFAULT_COUNTRY = "UK"
@@ -169,12 +172,10 @@ def save_students
 end
 
 
-def load_students(filename = "students.csv")
-  File.open(filename, "r") do |file|
-    file.readlines.each do |line|
-      name, cohort, hobbies, country, height = line.chomp.split(",")
-      add_student(name, cohort, hobbies, country, height)
-    end
+def load_students(filename = DEFAULT_FILE)
+  CSV.foreach(filename) do |line|
+    name, cohort, hobbies, country, height = line
+    add_student(name, cohort, hobbies, country, height)
   end
   puts @students.count == 1? "#{@students.count} student loaded from file #{filename}" : "#{@students.count} students loaded from file #{filename}" 
 end
