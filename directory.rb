@@ -44,6 +44,10 @@ end
 
 
 def show_students
+  if @students.empty?
+    puts "No students loaded. Load students before printing"
+    return
+  end
   print_header
   print_students_list()
   print_footer()
@@ -59,15 +63,17 @@ end
 def print_students_list()
   i = 0
   until i == @students.length do
-    if (@students[i][:name].length < 12)
       puts "#{i + 1} #{@students[i][:name]} (#{@students[i][:cohort]}) cohort with #{@students[i][:hobbies]} hobbies from #{@students[i][:country]} and with height of #{@students[i][:height]}".center(100 ,"-")
-    end
     i += 1
   end 
 end
 
 
 def print_students_name_starting_with()
+  if @students.empty?
+    puts "No students loaded. Load students before printing"
+    return
+  end
   name_starts_with = obtain_name_start()
   count = 0  
   @students.each_with_index do |student, idx|
@@ -129,6 +135,10 @@ end
 
 
 def print_students_grouped_by_cohort()
+  if @students.empty?
+    puts "No students loaded. Load students before printing"
+    return
+  end
   cohorts_grouping = Hash.new
   @students.map { |student|
     cohort = student[:cohort]
