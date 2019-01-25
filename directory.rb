@@ -15,7 +15,8 @@ def print_menu
   puts "2. Print students"
   puts "3. Save student list to students.csv"
   puts "4. Load student list from students.csv"
-  puts "5. Print students starting with a particular Letter" 
+  puts "5. Print students starting with a particular Letter"
+  puts "6. Print students by cohort" 
   puts "9. Exit"
 end 
 
@@ -32,6 +33,8 @@ def process_choice(choice)
       load_students()
     when "5"
       print_students_name_starting_with()
+    when "6"
+      print_students_grouped_by_cohort()
     when "9"
       exit
     else
@@ -115,7 +118,6 @@ def input_students()
 
     puts @students.count == 1? "Now we have #{@students.count} student" : "Now we have #{@students.count} students"
   end
-  return @students
 end
 
 
