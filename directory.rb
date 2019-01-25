@@ -105,31 +105,20 @@ def input_students()
   while true do
     puts "Enter student name"
     name = STDIN.gets.chomp
-    if name.empty?
-      break
-    end  
+    break if name.empty?
     puts "Enter student cohort"
     cohort = STDIN.gets.gsub(/\n/, "")
-    if cohort.empty?
-      cohort = DEFAULT_COHORT
-    end
+    cohort = DEFAULT_COHORT if cohort.empty?
     puts "Enter student hobbies"
     hobbies = STDIN.gets.gsub("\n", "")
-    if hobbies.empty?
-      hobbies = DEFAULT_HOBBY
-    end
+    hobbies = DEFAULT_HOBBY if hobbies.empty?
     puts "Enter student country of birth"
     country = STDIN.gets.delete("\n")
-    if country.empty?
-      country = DEFAULT_COUNTRY
-    end
+    country = DEFAULT_COUNTRY if country.empty?
     puts "Enter student height"
     height = STDIN.gets.tr("\n", "")
-    if height.empty?
-      height = DEFAULT_HEIGHT
-    end
-    @students.push({name: name, cohort: cohort.to_sym, hobbies: hobbies, country: country, height: height})
-
+    height = DEFAULT_HEIGHT if height.empty?
+    add_student(name, cohort, hobbies, country, height)
     puts @students.count == 1? "Now we have #{@students.count} student" : "Now we have #{@students.count} students"
   end
 end
@@ -177,7 +166,7 @@ def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort, hobbies, country, height = line.chomp.split(",")
-    @students << {name: name, cohort: cohort.to_sym, hobbies: hobbies, country: country, height: height}
+    add_student(name, cohort, hobbies, country, height)
   end
   file.close()  
 end
@@ -196,6 +185,9 @@ def try_file_load
   end
 end
 
+def add_student(name, cohort, hobbies, country, height)
+  @students << {name: name, cohort: cohort.to_sym, hobbies: hobbies, country: country, height: height}
+end
 
 try_file_load
 interactive_menu
