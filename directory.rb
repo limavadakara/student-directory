@@ -156,7 +156,9 @@ end
 
 
 def save_students
-  filename = DEFAULT_FILE
+  puts "While file do you want to save the students to? "
+  filename = STDIN.gets.chomp
+  filename = DEFAULT_FILE if filename.empty?
   file = File.open(filename, "w")
   @students.each do |student|
     student_info = [student[:name], student[:cohort],student[:hobbies], student[:country], student[:height]]
