@@ -162,12 +162,13 @@ def save_students
   puts "While file do you want to save the students to? "
   filename = STDIN.gets.chomp
   filename = DEFAULT_FILE if filename.empty?
-  CSV.open(filename, "w") do |csvfileline|
+  csvfullfiledata = CSV.generate do |csvwholefile|
     @students.each do |student|
       student_info = [student[:name], student[:cohort],student[:hobbies], student[:country], student[:height]]
-      csvfileline << student_info
+      csvwholefile << student_info
     end
   end
+  File.write(filename, csvfullfiledata)
   puts @students.count == 1? "#{@students.count} student saved to file #{filename}" : "#{@students.count} students saved to file #{filename}"
 end
 
