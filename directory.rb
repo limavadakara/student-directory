@@ -20,7 +20,7 @@ def print_menu
   puts "What would you like to do?"
   puts "1. Input students"
   puts "2. Print students"
-  puts "3. Save student list to students.csv"
+  puts "3. Save student list to file"
   puts "4. Load student list from students.csv"
   puts "5. Print students starting with a particular Letter"
   puts "6. Print students by cohort" 
@@ -71,7 +71,7 @@ def print_students_list()
   i = 0
   until i == @students.length do
       puts "#{i + 1} #{@students[i][:name]} (#{@students[i][:cohort]}) cohort"\
-           " with #{@students[i][:hobbies]} hobbies from #{@students[i][:country]}"\
+           " with #{@students[i][:hobbies]} hobby from #{@students[i][:country]}"\
            " and with height of #{@students[i][:height]}".center(100 ," ")
     i += 1
   end 
@@ -174,11 +174,13 @@ end
 
 
 def load_students(filename = DEFAULT_FILE)
+  line_count = 0
   CSV.foreach(filename) do |line|
     name, cohort, hobbies, country, height = line
     add_student(name, cohort, hobbies, country, height)
+    line_count += 1
   end
-  puts @students.count == 1? "#{@students.count} student loaded from file #{filename}" : "#{@students.count} students loaded from file #{filename}" 
+  puts line_count == 1? "#{line_count} student loaded from file #{filename}" : "#{line_count} students loaded from file #{filename}" 
 end
 
 
