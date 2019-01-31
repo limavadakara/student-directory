@@ -85,9 +85,9 @@ def print_students_name_starting_with()
   end
   name_starts_with = obtain_name_start()
   count = 0  
-  @students.each_with_index do |student, idx|
+  @students.select do |student|
      if student[:name].capitalize.start_with? name_starts_with
-       puts "#{idx + 1} #{student[:name]} (#{student[:cohort]}) cohort"\
+       puts "#{student[:name]} (#{student[:cohort]}) cohort"\
             " with #{student[:hobbies]} hobby from #{student[:country]}"\
             " and with height of #{student[:height]}".center(100 ," ")
        count += 1
